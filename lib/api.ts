@@ -1,6 +1,6 @@
 import { ProductResponse, ReservationResponse } from "@/src/types"
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || ""
+const BASE_URL = (process.env.NEXT_PUBLIC_BASE_URL || "").replace(/\/$/, "")
 
 export const api = {
   // Fetches all products with stock info per warehouse
