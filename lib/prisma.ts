@@ -1,6 +1,10 @@
 import { PrismaNeon } from "@prisma/adapter-neon"
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const { PrismaClient } = require("@prisma/client")
+
+// @ts-ignore
+import pkg from "@prisma/client"
+
+// @ts-ignore
+const { PrismaClient } = pkg
 
 const globalForPrisma = global as unknown as { prisma: any }
 
@@ -11,7 +15,7 @@ function createPrismaClient() {
   return new PrismaClient({ adapter })
 }
 
-export const prisma = globalForPrisma.prisma || createPrismaClient()
+export const prisma: any = globalForPrisma.prisma || createPrismaClient()
 
 if (process.env.NODE_ENV !== "production") {
   globalForPrisma.prisma = prisma
