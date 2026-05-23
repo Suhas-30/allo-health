@@ -16,6 +16,19 @@ export async function GET(
       )
     }
 
+    // Lazy cleanup — if expired and still pending, release it
+    if (
+      reservation.status === "PENDING" &&
+      new Date() > reservation.expiresAt
+    ) {
+      await reservationRepository.releaseReservation(
+        reservation.id,
+        reservation.stockId,
+        reservation.quantity
+      )
+      return NextResponse.json({ ...reservation, status: "RELEASED" })
+    }
+
     return NextResponse.json(reservation)
   } catch (error) {
     console.error("Error fetching reservation:", error)
