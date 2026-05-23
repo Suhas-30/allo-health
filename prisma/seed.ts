@@ -29,10 +29,10 @@ async function main() {
   const products = await sql`
     INSERT INTO "Product" (id, name, description, price, "createdAt")
     VALUES 
-      (gen_random_uuid(), 'Wireless Headphones', 'Premium noise cancelling wireless headphones', 2999.99, NOW()),
-      (gen_random_uuid(), 'Mechanical Keyboard', 'RGB mechanical keyboard with Cherry MX switches', 4999.99, NOW()),
-      (gen_random_uuid(), 'USB-C Hub', '7-in-1 USB-C hub with HDMI and fast charging', 1499.99, NOW()),
-      (gen_random_uuid(), 'Webcam HD', '1080p HD webcam with built-in microphone', 2499.99, NOW())
+      (gen_random_uuid(), 'Vitamin D3 Supplements', 'High potency Vitamin D3 2000IU for immunity and bone health', 499.99, NOW()),
+      (gen_random_uuid(), 'Whey Protein Powder', 'Chocolate flavored whey protein 1kg for muscle recovery', 1999.99, NOW()),
+      (gen_random_uuid(), 'Blood Pressure Monitor', 'Digital automatic BP monitor with large display', 2499.99, NOW()),
+      (gen_random_uuid(), 'Pulse Oximeter', 'Fingertip pulse oximeter for SpO2 and heart rate monitoring', 899.99, NOW())
     RETURNING id, name
   `
   console.log("✅ Products created")
