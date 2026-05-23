@@ -1,13 +1,13 @@
+import { PrismaClient } from "@prisma/client"
 import { PrismaNeon } from "@prisma/adapter-neon"
-import Prisma from "@prisma/client"
 
-const globalForPrisma = global as unknown as { prisma: Prisma.PrismaClient }
+const globalForPrisma = global as unknown as { prisma: InstanceType<typeof PrismaClient> }
 
 function createPrismaClient() {
   const adapter = new PrismaNeon({
     connectionString: process.env.DATABASE_URL!,
   })
-  return new Prisma.PrismaClient({ adapter })
+  return new PrismaClient({ adapter })
 }
 
 export const prisma = globalForPrisma.prisma || createPrismaClient()
