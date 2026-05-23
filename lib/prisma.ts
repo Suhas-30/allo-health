@@ -1,7 +1,8 @@
-import { PrismaClient } from "@prisma/client"
 import { PrismaNeon } from "@prisma/adapter-neon"
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { PrismaClient } = require("@prisma/client")
 
-const globalForPrisma = global as unknown as { prisma: InstanceType<typeof PrismaClient> }
+const globalForPrisma = global as unknown as { prisma: any }
 
 function createPrismaClient() {
   const adapter = new PrismaNeon({
